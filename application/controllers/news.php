@@ -55,6 +55,11 @@ class News extends CI_controller {
 
 	public function cli()
 	{
+		if (ini_get('display_errors') == 1)
+		{
+			echo "Enabled".PHP_EOL;
+			return;
+		}
 		echo "Hello!".PHP_EOL;
 	}
 }
