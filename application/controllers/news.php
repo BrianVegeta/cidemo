@@ -35,6 +35,8 @@ class News extends CI_controller {
 
 	public function create()
 	{
+		// $this->load->config('tank_auth', TRUE);
+		
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 

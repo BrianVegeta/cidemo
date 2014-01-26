@@ -37,7 +37,11 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-
+$route['auth/send_again'] = 'auth/send_again';
+$route['auth/logout'] = 'auth/logout';
+$route['auth/register'] = 'auth/register';
+$route['auth/login'] = 'auth/login';
+$route['auth'] = 'auth';
 $route['news/cli'] = 'news/cli';
 $route['news/create'] = 'news/create';
 $route['news/(:any)'] = 'news/view/$1';
