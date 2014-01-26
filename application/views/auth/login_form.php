@@ -1,29 +1,32 @@
 <?php
+if ($login_by_username AND $login_by_email) {
+	$login_label = 'Email or Username';
+} else if ($login_by_username) {
+	$login_label = 'Username';
+} else {
+	$login_label = 'Email';
+}
 $login = array(
 	'name'	=> 'login',
 	'id'	=> 'login',
 	'value' => set_value('login'),
+	'class' => 'form-control',
+	'placeholder' => $login_label,
 	'maxlength'	=> 80,
 	'size'	=> 30,
 );
-if ($login_by_username AND $login_by_email) {
-	$login_label = 'Email or login';
-} else if ($login_by_username) {
-	$login_label = 'Login';
-} else {
-	$login_label = 'Email';
-}
 $password = array(
 	'name'	=> 'password',
 	'id'	=> 'password',
 	'size'	=> 30,
+	'class' => 'form-control',
+	'placeholder' => 'password'
 );
 $remember = array(
 	'name'	=> 'remember',
 	'id'	=> 'remember',
 	'value'	=> 1,
-	'checked'	=> set_value('remember'),
-	'style' => 'margin:0;padding:0',
+	'checked'	=> set_value('remember')
 );
 $captcha = array(
 	'name'	=> 'captcha',
@@ -31,19 +34,48 @@ $captcha = array(
 	'maxlength'	=> 8,
 );
 ?>
-<?php echo form_open($this->uri->uri_string()); ?>
+<?php echo form_open($this->uri->uri_string(), array('class' => 'form-horizontal')); ?>
+	<?php $form_error_login = form_error($login['name']); ?>
+	<div class="form-group <?php if (isset($errors[$login['name']]) OR !empty($form_error_login)) echo 'has-error'; ?>">
+		<?php echo form_label($login_label, $login['id'], array('class' => 'col-sm-2 control-label')); ?>
+    <div class="col-sm-4">
+    	<?php echo form_input($login); ?>
+    	<?php if (isset($errors[$login['name']]) OR !empty($form_error_login)): ?>
+		  	<span class="help-block"><?php echo $form_error_login; ?><?php echo isset($errors[$login['name']]) ? $errors[$login['name']] : ''; ?></span>
+		  <?php endif; ?>	
+    </div>
+  </div>
+  <?php $form_error_password = form_error($password['name']); ?>
+  <div class="form-group <?php if (isset($errors[$password['name']]) OR !empty($form_error_password)) echo 'has-error'; ?>">
+  	<?php echo form_label('Password', $password['id'], array('class' => 'col-sm-2 control-label')); ?>
+    <div class="col-sm-4">
+    	<?php echo form_password($password); ?>
+    	<?php if (isset($errors[$password['name']]) OR !empty($form_error_password)): ?>
+		  	<span class="help-block"><?php echo $form_error_password; ?><?php echo isset($errors[$password['name']]) ? $errors[$password['name']] : ''; ?></span>
+		  <?php endif; ?>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4">
+      <div class="checkbox">
+      	<div class="pull-right">
+	      	<?php //echo anchor('/auth/forgot_password/', 'Forgot password'); ?>
+					<?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('/auth/register/', 'Register'); ?>
+	      </div>
+        <label>
+        	<?php echo form_checkbox($remember); ?> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
 <table>
-	<tr>
-		<td><?php echo form_label($login_label, $login['id']); ?></td>
-		<td><?php echo form_input($login); ?></td>
-		<td style="color: red;"><?php echo form_error($login['name']); ?><?php echo isset($errors[$login['name']])?$errors[$login['name']]:''; ?></td>
-	</tr>
-	<tr>
-		<td><?php echo form_label('Password', $password['id']); ?></td>
-		<td><?php echo form_password($password); ?></td>
-		<td style="color: red;"><?php echo form_error($password['name']); ?><?php echo isset($errors[$password['name']])?$errors[$password['name']]:''; ?></td>
-	</tr>
 
+	<!-- captcha start-->
 	<?php if ($show_captcha) {
 		if ($use_recaptcha) { ?>
 	<tr>
@@ -79,15 +111,6 @@ $captcha = array(
 	</tr>
 	<?php }
 	} ?>
-
-	<tr>
-		<td colspan="3">
-			<?php echo form_checkbox($remember); ?>
-			<?php echo form_label('Remember me', $remember['id']); ?>
-			<?php echo anchor('/auth/forgot_password/', 'Forgot password'); ?>
-			<?php if ($this->config->item('allow_registration', 'tank_auth')) echo anchor('/auth/register/', 'Register'); ?>
-		</td>
-	</tr>
+	<!-- captcha end-->
 </table>
-<?php echo form_submit('submit', 'Let me in'); ?>
 <?php echo form_close(); ?>

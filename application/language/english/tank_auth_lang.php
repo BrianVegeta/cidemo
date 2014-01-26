@@ -1,9 +1,9 @@
 <?php
 
 // Errors
-$lang['auth_incorrect_password'] = 'Incorrect password';
-$lang['auth_incorrect_login'] = 'Incorrect login';
-$lang['auth_incorrect_email_or_username'] = 'Login or email doesn\'t exist';
+$lang['auth_incorrect_password'] = 'Wrong Username/Email and password combination.';
+$lang['auth_incorrect_login'] = 'Wrong Username/Email and password combination.';
+$lang['auth_incorrect_email_or_username'] = 'Wrong Username/Email and password combination.';
 $lang['auth_email_in_use'] = 'Email is already used by another user. Please choose another email.';
 $lang['auth_username_in_use'] = 'Username already exists. Please choose another username.';
 $lang['auth_current_email'] = 'This is your current email';
