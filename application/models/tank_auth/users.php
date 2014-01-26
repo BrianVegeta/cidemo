@@ -42,6 +42,21 @@ class Users extends CI_Model
 	}
 
 	/**
+	 * Get profile by user id
+	 *
+	 * @param int 
+	 * @return object
+	 */
+	function get_profile_by_id($user_id) 
+	{
+		$this->db->where('user_id', $user_id);
+		$query = $this->db->get($this->profile_table_name);
+
+		if ($query->num_rows() == 1) return $query->row();
+		return NULL;
+	}
+
+	/**
 	 * Get user record by login (username or email)
 	 *
 	 * @param	string
@@ -367,6 +382,22 @@ class Users extends CI_Model
 			'banned'		=> 0,
 			'ban_reason'	=> NULL,
 		));
+	}
+
+	/**
+	 * 
+	 *	Upload profile photo
+	 * 
+	 *
+	 * 
+	 */
+	function update_photo($user_id, $filename, $thumb){
+		$this->db->where('user_id', $user_id);
+		$arr = array(
+		'photo'=> $filename,
+		'thumb' => $thumb
+		);
+		$this->db->update($this->profile_table_name, $arr);
 	}
 
 	/**

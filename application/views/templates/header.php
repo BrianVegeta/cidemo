@@ -29,13 +29,34 @@
           <li><a href="#">Link</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <?php if ($this->tank_auth->is_logged_in()): ?>
-              <?php echo anchor('/auth/logout', 'Logout'); ?>
-            <?php else: ?>
+          <?php if ($this->tank_auth->is_logged_in()): ?>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><?php echo anchor('/profile', 'Profile'); ?></li>
+                <li class="divider"></li>
+                <li><?php echo anchor('/auth/logout', 'Logout'); ?></li>
+              </ul>
+            </li>
+            <li>
+              <?php $profile_info = profile_info(); ?>
+              <?php 
+                $image_properties = array(
+                  'src' => "uploads/{$profile_info->thumb}",
+                  'alt' => '',
+                  'class' => 'img-circle',
+                  'width' => '40',
+                  'height' => '40',
+                  'style' => 'margin-top: 6px;'
+                );
+              ?>
+              <?php echo img($image_properties); ?>
+            </li>
+          <?php else: ?>
+            <li>
               <?php echo anchor('/auth/login', 'Login'); ?>
-            <?php endif; ?>
-          </li>
+            </li>
+          <?php endif; ?>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div>

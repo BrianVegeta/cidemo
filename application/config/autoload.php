@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session', 'tank_auth');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'site_info');
+$autoload['helper'] = array('url', 'site_info', 'user_profile', 'html');
 
 
 /*
