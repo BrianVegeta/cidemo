@@ -129,7 +129,7 @@ class Profile extends CI_controller
 			/* Load "success" view with all the data! */
 			$this->load->view('profile/upload_success', $data);
 		 
-		
+			echo json_encode(array('thumb' => $thumb));
 		}
 	}
 

@@ -12,6 +12,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
   <![endif]-->
+  <link href="/css/jquery.fileupload.css" rel="stylesheet">
 </head>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -31,26 +32,34 @@
         <ul class="nav navbar-nav navbar-right">
           <?php if ($this->tank_auth->is_logged_in()): ?>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo profile_username(); ?> <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><?php echo anchor('/profile', 'Profile'); ?></li>
+                <li><?php echo anchor('/#', 'action..'); ?></li>
                 <li class="divider"></li>
                 <li><?php echo anchor('/auth/logout', 'Logout'); ?></li>
               </ul>
             </li>
             <li>
-              <?php $profile_info = profile_info(); ?>
+              <?php $profile_thumb = profile_thumb(); ?>
               <?php 
                 $image_properties = array(
-                  'src' => "uploads/{$profile_info->thumb}",
+                  'src' => $profile_thumb,
                   'alt' => '',
-                  'class' => 'img-circle',
+                  'id' => 'user_profile_thumb',
+                  'class' => 'img-circle fileinput-button',
                   'width' => '40',
                   'height' => '40',
                   'style' => 'margin-top: 6px;'
                 );
               ?>
-              <?php echo img($image_properties); ?>
+              <span id="fileupload">
+                <?php echo form_open_multipart('profile/do_upload', array('style' => 'margin-bottom: 0;'));?>
+                  <span class="fileinput-button">
+                    <?php echo img($image_properties); ?>        
+                    <input type="file" name="userfile" multiple style="height: 40px;font-size: 0;">
+                  </span>
+                <?php echo form_close(); ?>
+              </span>
             </li>
           <?php else: ?>
             <li>

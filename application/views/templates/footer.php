@@ -8,5 +8,21 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.ui.widget.js"></script>
+    <script src="/js/jquery.fileupload.js"></script>
+    <script>
+		$(function () {
+			$('#fileupload').fileupload({
+        dataType: 'json',
+        add: function (e, data) {
+          data.submit();
+        },
+        done: function (e, data) {
+        	$('#user_profile_thumb').attr('src', 'http://cidemo.dev/uploads/' + data.result.thumb);
+        }
+    	});
+		});
+
+		</script>
 	</body>
 </html>
