@@ -19,15 +19,14 @@
     <div class="container">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Brand</a>
+        <a class="navbar-brand" href="/">Vegeta</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
+          <li class="<?php echo check_current_uri('active', ''); ?>"><a href="/">Home</a></li>
+          <li class="<?php echo check_current_uri('active', 'blogs'); ?>"><?php echo anchor('/blogs', 'Posts'); ?></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <?php if ($this->tank_auth->is_logged_in()): ?>
@@ -55,7 +54,7 @@
               <span id="fileupload">
                 <?php echo form_open_multipart('profile/do_upload', array('style' => 'margin-bottom: 0;'));?>
                   <span class="fileinput-button">
-                    <?php echo img($image_properties); ?>        
+                    <?php echo img($image_properties); ?>
                     <input type="file" name="userfile" multiple style="height: 40px;font-size: 0;">
                   </span>
                 <?php echo form_close(); ?>

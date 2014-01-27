@@ -2,11 +2,13 @@
 
 if ( ! function_exists('profile_thumb'))
 {
-  function profile_thumb()
+  function profile_thumb($user_id = false)
   {
 		$CI =& get_instance();
 		$CI->load->model('tank_auth/users','foo');
-    $user_id = $CI->tank_auth->get_user_id();
+    if ($user_id === false) {
+      $user_id = $CI->tank_auth->get_user_id(); 
+    }
 		$data = $CI->foo->get_profile_by_id($user_id);
 		return _check_thumb_exist($data);;
   }
@@ -23,12 +25,14 @@ if ( ! function_exists('profile_thumb'))
 
 if ( ! function_exists('profile_username'))
 {
-  function profile_username()
+  function profile_username($user_id = false)
   {
 		$CI =& get_instance();
 		$CI->load->model('tank_auth/users','foo');
-    $user_id = $CI->tank_auth->get_user_id();
+    if ($user_id === false) {
+      $user_id = $CI->tank_auth->get_user_id(); 
+    }
 		$data = $CI->foo->get_user_by_id($user_id, true);
-		return $data->username;
+		return ucfirst($data->username);
   }
 }
