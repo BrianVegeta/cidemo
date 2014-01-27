@@ -36,3 +36,13 @@ if ( ! function_exists('profile_username'))
 		return ucfirst($data->username);
   }
 }
+
+if ( ! function_exists('user_id'))
+{
+  function user_id()
+  {
+    $CI =& get_instance();
+    $CI->load->model('tank_auth/users','foo');
+    return $CI->tank_auth->get_user_id(); 
+  }
+}

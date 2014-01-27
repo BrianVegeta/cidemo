@@ -1,8 +1,6 @@
 <?php 
   $image_properties = array(
     'alt' => '',
-    'id' => 'user_profile_thumb',
-    'class' => 'img-circle fileinput-button',
     'width' => '50',
     'height' => '50',
     'style' => 'margin-top: 6px;'
@@ -22,6 +20,7 @@
 				<div class="col-md-3">
 					<div class="pull-left">
 						<?php $image_properties['src'] = profile_thumb($blog['user_id']); ?>
+						<?php $image_properties['class'] = "img-circle fileinput-button post_user_thumb_{$blog['user_id']}"; ?>
 						<?php echo img($image_properties); ?>
 					</div>
 					<div style="margin-left: 60px;padding-top: 16px;padding-left: 10px;">

@@ -14,14 +14,15 @@
     <script>
 		$(function () {
 			$('#fileupload').fileupload({
-        dataType: 'json',
-        add: function (e, data) {
-          data.submit();
-        },
-        done: function (e, data) {
-        	$('#user_profile_thumb').attr('src', 'http://cidemo.dev/uploads/' + data.result.thumb);
-        }
-    	});
+                dataType: 'json',
+                add: function (e, data) {
+                  data.submit();
+                },
+                done: function (e, data) {
+                	$('#user_profile_thumb').attr('src', 'http://cidemo.dev/uploads/' + data.result.thumb);
+                    $('.post_user_thumb_<?php echo user_id(); ?>').attr('src', 'http://cidemo.dev/uploads/' + data.result.thumb);
+                }
+        	});
 		});
 
 		</script>
