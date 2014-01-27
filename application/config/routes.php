@@ -39,18 +39,11 @@
 */
 $route['blogs'] = 'blogs';
 $route['blogs/create'] = 'blogs/create';
-$route['profile'] = 'profile';
 $route['profile/do_upload'] = 'profile/do_upload';
-$route['profile/picture'] = 'profile/picture';
 $route['auth/logout'] = 'auth/logout';
 $route['auth/register'] = 'auth/register';
 $route['auth/login'] = 'auth/login';
 $route['auth'] = 'auth';
-$route['news/cli'] = 'news/cli';
-$route['news/create'] = 'news/create';
-$route['news/(:any)'] = 'news/view/$1';
-$route['news'] = 'news';
-$route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 // $route['default_controller'] = "pages/view";
 // $route['(:any)'] = 'pages/view/$1';
