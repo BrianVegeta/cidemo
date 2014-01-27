@@ -70,7 +70,7 @@ $captcha = array(
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Sign in</button>
+      <button type="submit" class="btn btn-primary">Sign in</button>
     </div>
   </div>
 <table>

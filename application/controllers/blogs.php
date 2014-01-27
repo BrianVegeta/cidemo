@@ -22,7 +22,7 @@ class Blogs extends CI_controller {
 			'config' => array(
 				'toolbar' 	=> 	"Full", 	//Using the Full toolbar
 				'width' 	=> 	"550px",	//Setting a custom width
-				'height' 	=> 	'100px',	//Setting a custom height
+				'height' 	=> 	'360px',	//Setting a custom height
  
 			),
  

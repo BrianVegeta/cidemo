@@ -20,12 +20,16 @@
 		<?php foreach ($blogs as $blog): ?>
 			<div class="row" style="background-color: #f7f7f9; margin-bottom: 30px; border: 1px solid #e1e1e8; border-radius: 4px;">
 				<div class="col-md-3">
-					<?php $image_properties['src'] = profile_thumb($blog['user_id']); ?>
-					<?php echo img($image_properties); ?>
-					<span style="font-size: 16px;font-weight: 500;padding-left: 10px;">
-						<?php echo profile_username($blog['user_id']); ?>
-					</span>
-					said:
+					<div class="pull-left">
+						<?php $image_properties['src'] = profile_thumb($blog['user_id']); ?>
+						<?php echo img($image_properties); ?>
+					</div>
+					<div style="margin-left: 60px;padding-top: 16px;padding-left: 10px;">
+						<span style="font-size: 16px;font-weight: 500;">
+							<?php echo profile_username($blog['user_id']); ?>
+						</span>
+						said:
+					</div>
 				</div>
 				<div class="col-md-9">
 					<h2><?php echo $blog['title']; ?></h2>
